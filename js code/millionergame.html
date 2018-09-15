@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Игра Кто Хочет Стать Миллионером</title>
+</head>
+<body>
+<script>
+    "use strict";
+
+    let questions = {
+        first: {
+            question: 'Кто из русских поэтов написал стихотворение: \nЯ помню чудное мгновение\n\n1) Александр Пушкин\n' +
+            '2) Сергей Есенин\n3) Анна Ахматова\n4) В.В. Путин ',
+            trueAnswer: '1'
+        },
+        second: {
+            question: 'Как зовут создателя языка JavaScript?\n\n1) Дуглас Крокфорд\n2) Алан Кэй\n3) Брендан Айк\n' +
+            '4) В.В. Путин',
+            trueAnswer: '3'
+        },
+        third: {
+            question: 'Кто был последним последним правителем России из рода Рюриковичей?\n\n1) Иван Грозный\n' +
+            '2) Князь Г.Е. Львов\n3) Николай II\n4) В.В. Путин',
+            trueAnswer: '2'
+        },
+        four: {
+            question: 'Кто был последним царем Руси из рода Рюриковичей ?\n\n1) Князь Г.Е. Львов\n2) Князь Василий Шуйский\n' +
+            '3) Иван Грозный\n4) В.В. Путин',
+            trueAnswer: '2'
+        },
+        five: {
+            question: 'Какой из этих городов был столицей России?\n\n1) Тверь\n2) Омск\n3) Томск\n4) Новосибирск',
+            trueAnswer: '2'
+        }
+    };
+
+    function getAnswer(question) {
+        let answer = prompt(question);
+        if (answer === 'q') {
+            return false;
+        }
+        else if (+answer > 4 || +answer < 1) {
+            alert('Вы ввели ответ за границами заданного диапазона! Попробуйте ещё раз.\nЕсли хотите выйти - введите "q"');
+            return getAnswer(question);
+        }
+        else if (isNaN(+answer) || !isFinite(+answer)) {
+            alert('Вы ввели неправильный символ! Попробуйте ещё раз.\nЕсли хотите выйти - введите "q"');
+            return getAnswer(question);
+        }
+        else {
+            return answer;
+        }
+    }
+
+    function millionaireGame() {
+        alert('Добро пожаловать в игру "Кто хочет стать миллионером?"\nУкажите номер правильного ответа.\nДля выхода из игры используйте "q".');
+        for (let elem in questions) {
+            let game = questions[elem];
+            let userAnswer = getAnswer(game.question);
+            if (!userAnswer) {
+                return;
+            }
+            if (userAnswer !== game.trueAnswer) {
+                alert('Очень жаль, но Вы проиграли, ответ неверный.\nВерный вариант ответа: ' + game.trueAnswer + '\nПопробуйте сыграть ещё раз!');
+                return;
+            }
+            alert('Верно!');
+        }
+        alert('Вы ответили на все вопросы верно! Вот Ваш миллион!\n$1000.000.000');
+    }
+
+
+</script>
+<p><button onclick="millionaireGame();">Сыграть в игру</button></p>
+</body>
+</html>

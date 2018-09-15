@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Шашки</title>
+    <link rel="stylesheet" href="css/board.css" type="text/css">
+    <script src="js/board.js" defer></script>
+    <script src="js/fig_data.js" defer></script>
+    <script src="js/figure.js" defer></script>
+</head>
+<body>
+    <div id="board"></div>
+<script>
+    window.onload = function () {
+        var board = new Board("board");
+        board.init(fig_data);
+        board.render();
+    };
+</script>
+</body>
+</html>
